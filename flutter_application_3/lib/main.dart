@@ -1,53 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:flutter_application_3/Theme/app_colors.dart';
+import 'package:flutter_application_3/json_file.dart';
+import 'package:flutter_application_3/screens/auth_screen/auth_widget.dart';
+import 'package:flutter_application_3/screens/map_screen/map_screen.dart';
 
-void main() => runApp(const App());
+void main() {
+  fetchRestList();
+  runApp(const App());
+}
 
 class App extends StatelessWidget {
   const App({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+     return MaterialApp(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          color: Color.fromARGB(255, 252, 210, 72) 
-        ) 
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Center(
-            child: Text('Flutter map'))
-            ),
-        body: FlutterMap(
-          options: const MapOptions(
-          initialCenter: LatLng(59.937500, 30.308611),
-          initialZoom: 12,
-          ),
-          children: [
-            openStreetMapTilelayer,
-            const MarkerLayer(markers: [
-            Marker(
-              point: LatLng(59.937017, 30.203902),
-              width: 60,
-              height: 60,
-              alignment: Alignment.centerLeft, 
-              child: Icon(
-                Icons.location_pin,
-                size: 60,
-                color: Colors.red,
-                )
-              ),
-            ]),
-          ],
+          backgroundColor: AppColors.mainAppColor,
+          foregroundColor: AppColors.mainText,
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: AppColors.mainAppColor,
+          selectedItemColor: AppColors.selectedItemColor,
+          unselectedItemColor: AppColors.unselectedItemColor,
         ),
       ),
+      home: const AuthWidget(),
     );
   }
 }
-
-TileLayer get openStreetMapTilelayer => TileLayer(
-  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-  userAgentPackageName: 'flutter_application_3',
-);

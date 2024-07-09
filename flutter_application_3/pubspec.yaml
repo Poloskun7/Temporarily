@@ -38,6 +38,8 @@ dependencies:
   flutter_map: ^7.0.1
   latlong2: ^0.9.1
   flutter_map_cancellable_tile_provider: ^3.0.0
+  dio: ^5.5.0
+  flutter_map_geojson: ^1.0.8
 
 dev_dependencies:
   flutter_test:

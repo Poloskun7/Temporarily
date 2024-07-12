@@ -4,7 +4,7 @@ import 'package:flutter_application_3/json_file.dart';
 import 'package:flutter_application_3/screens/auth_screen/auth_widget.dart';
 
 void main() {
-  fetchRestList();
+  Markers.fetchRestList();
   runApp(const App());
 }
 

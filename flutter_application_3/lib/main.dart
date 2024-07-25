@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/Theme/app_colors.dart';
-import 'package:flutter_application_3/json_file.dart';
 import 'package:flutter_application_3/screens/auth_screen/auth_widget.dart';
 
 void main() {
-  Markers.fetchRestList();
   runApp(const App());
 }
 
@@ -18,6 +16,16 @@ class App extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.mainAppColor,
           foregroundColor: AppColors.mainText,
+        ),
+        radioTheme: RadioThemeData(
+          fillColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              if (!states.contains(MaterialState.selected)) {
+                return AppColors.mainText; // Цвет ободка неактивной RadioListTile
+              }
+              return null; // Использует цвет по умолчанию для активного состояния
+            },
+          ),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.mainAppColor,
